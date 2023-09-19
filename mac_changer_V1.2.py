@@ -5,7 +5,7 @@ import re
 
 def change_mac(interface, new_mac):
 
-    print(f'[+] A(z) "{interface}" MAC addressének megváltoztatása erre: {new_mac}')
+    print(f'[+] A(z) "{interface}" MAC address megváltoztatása erre: {new_mac}')
     subprocess.call(["ifconfig", interface, 'down'])
     subprocess.call(["ifconfig", interface, 'hw', 'ether', new_mac])
     subprocess.call(["ifconfig", interface, 'up'])
@@ -13,15 +13,15 @@ def change_mac(interface, new_mac):
 
 def get_arguments():
     parser = optparse.OptionParser()
-    parser.add_option('-i', '--interface', dest='interface', help='interface to change its MAC address')
-    parser.add_option('-m', '--mac', dest='new_mac', help='it will be the new MAC address')
+    parser.add_option('-i', '--interface', dest='interface', help='az interface, aminek a MAC address-e változik')
+    parser.add_option('-m', '--mac', dest='new_mac', help='ez lesz az új MAC address')
     (option, arguments) = parser.parse_args()
     if not option.interface:
         # code to handle error
-        parser.error('[-] Please specify an interface, use --help for more info.')
+        parser.error('[-] Adj meg egy interface-t, használd a --help parancsot több infóért.')
     elif not option.new_mac:
         # code to handle error
-        parser.error('[-] Please specify a new MAC address, use --help for more info.')
+        parser.error('[-] Adj meg egy új MAC address, használd --help parancsot több infóért.')
     return option
 
 
